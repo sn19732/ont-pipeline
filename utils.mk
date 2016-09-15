@@ -10,6 +10,11 @@ $(WDT):
 clean_wdir:
 	@rm -r $(WDIR)
 
+# Delete results:
+.PHONY: clean_res
+clean_res:
+	@rm -r $(RES)/
+
 # Print pipeline info:
 .PHONY: info
 info:
@@ -33,6 +38,7 @@ help:
 	@echo "Useful targets:"
 	@echo "wdir			create working directory"
 	@echo "clean_wdir		delete working directory. WARNING: all data will be lost!"
+	@echo "clean_res		delete results directory. WARNING: all data will be lost!"
 	@echo "info			print pipeline info"
 	@echo "com 			commit all changes"
 	@echo "dep 			install python dependencies using pip"
