@@ -37,6 +37,7 @@ Useful make targets
 ```
 wdir                    create working directory
 clean_wdir              delete working directory. WARNING: all data will be lost!
+clean_res               delete results directory. WARNING: all data will be lost!
 info                    print pipeline info
 com                     commit all changes
 dep                     install python dependencies using pip
