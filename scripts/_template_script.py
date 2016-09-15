@@ -3,17 +3,18 @@
 
 import argparse
 import sys
-# Script meant to be run from pipeline repo, append lib to path:
-sys.path.append('lib/')
+# Script meant to be run from pipeline repo, append that to path:
+sys.path.append('./')
+
 
 def parse_arguments():
     """
-    Parse arguments.
+    Parse command line arguments.
     """
     parser = argparse.ArgumentParser(
         description='Awesome script.')
     parser.add_argument(
-        '-i', metavar='input', type=str, help="Input.", required=True)
+        '-i', metavar='input', type=str, help="Input.")
 
     args = parser.parse_args()
     return args
