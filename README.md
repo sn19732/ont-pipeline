@@ -21,15 +21,15 @@ Layout
 ------
 
 * README.md
-* Makefile          master makefile
-* config.mk         makefile for general configuration
-* analysis.mk       makefile for pipeline steps
-* utils.mk          utility makefile
-* scripts/          analysis scripts
-* lib/              python files included by analysis scripts
-* data/             input data needed by pipeline - use with caution to avoid bloated repo
-* results/          pipeline results to be commited - use with caution to avoid bloated repo
-* requirements.txt  list of python package dependencies
+* Makefile          - master makefile
+* config.mk         - makefile for general configuration
+* analysis.mk       - makefile for pipeline steps
+* utils.mk          - utility makefile
+* scripts/          - analysis scripts
+* lib/              - python files included by analysis scripts
+* data/             - input data needed by pipeline - use with caution to avoid bloated repo
+* results/          - pipeline results to be commited - use with caution to avoid bloated repo
+* requirements.txt  - list of python package dependencies
 
 Useful make targets
 -------------------
