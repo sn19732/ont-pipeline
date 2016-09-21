@@ -3,7 +3,8 @@ MAINTAINER Botond.Sipos@nanoporetech.com
 
 # Upgrade and install necessary packages:
 RUN apt-get update && apt-get upgrade &&\
-    apt-get install -y sudo git make build-essential mummer python-numpy python-matplotlib time bwa samtools software-properties-common gnuplot
+    apt-get install -y sudo git make build-essential mummer python-numpy python-matplotlib time bwa samtools software-properties-common gnuplot\
+    zlib1g-dev
 
 # Install latest Java:
 RUN add-apt-repository ppa:webupd8team/java &&\
