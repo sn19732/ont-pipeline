@@ -15,6 +15,6 @@ RUN add-apt-repository ppa:webupd8team/java &&\
 WORKDIR /opt
 
 # Compile and install canu:
-RUN git clone clone https://github.com/marbl/canu.git &&\
+RUN git clone https://github.com/marbl/canu.git &&\
     cd canu/src && make -j && cp /opt/canu/Linux-amd64/bin/canu/* /usr/local/bin/ && cd - &&\
     rm -r canu
