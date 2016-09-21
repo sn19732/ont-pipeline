@@ -4,7 +4,7 @@ MAINTAINER Botond.Sipos@nanoporetech.com
 # Upgrade and install necessary packages:
 RUN apt-get update && apt-get upgrade &&\
     apt-get install -y sudo git make build-essential mummer python-numpy python-matplotlib time bwa samtools software-properties-common gnuplot\
-    zlib1g-dev
+    zlib1g-dev mc wget
 
 # Install latest Java:
 RUN add-apt-repository ppa:webupd8team/java &&\
@@ -30,4 +30,11 @@ RUN git clone https://github.com/lh3/miniasm && (cd miniasm && make) &&\
 
 # Compile and install racon:
 RUN git clone https://github.com/isovic/racon.git  && (cd racon && make modules && make tools && make -j) &&\
-    cp -r racon/bin/* /usr/local/bin/
+    cp -r racon/bin/* /usr/local/bin/ && rm -r racon
+
+# Download and install pilon.
+RUN wget https://github.com/broadinstitute/pilon/releases/download/v1.20/pilon-1.20.jar && echo "java -jar /opt/pilon-1.20.jar" > /usr/bin/local/pilon &&
+    chmod +x /usr/local/bin/pilon
+
+# Change back to root:
+WORKDIR /
