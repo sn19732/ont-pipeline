@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:14.04
 MAINTAINER Botond.Sipos@nanoporetech.com
 
 # Upgrade and install necessary packages:
@@ -36,5 +36,5 @@ RUN git clone https://github.com/isovic/racon.git  && (cd racon && make modules 
 RUN wget https://github.com/broadinstitute/pilon/releases/download/v1.20/pilon-1.20.jar && echo 'java -jar /opt/pilon-1.20.jar $@' > /usr/local/bin/pilon &&\
     chmod +x /usr/local/bin/pilon
 
-# Change back to root:
+# Change working directory to home:
 WORKDIR /home
