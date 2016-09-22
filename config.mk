@@ -15,9 +15,14 @@ REPO=git@git.oxfordnanolabs.local:bsipos/ont-assembly-polish.git
 
 # Input files:
 
-NANOPORE_READS=
-ILLUMINA_READS_PAIR1=
-ILLUMINA_READS_PAIR2=
+NANOPORE_READS=../small_nanopore.fq
+ILLUMINA_READS_PAIR1=../Pcyan_Sample7_S5_L001_R1_001.fastq.gz
+ILLUMINA_READS_PAIR2=../Pcyan_Sample7_S5_L001_R2_001.fastq.gz
+
+# Canu configuration:
+CANU_GENOME_SIZE=4.8m
+# Extra options passed to canu, refer to http://canu.readthedocs.io for more information:
+CANU_PARAMETERS=
 
 
 # Number of cores to use for multithreaded applications:
