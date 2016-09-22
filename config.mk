@@ -24,6 +24,13 @@ CANU_GENOME_SIZE=4.8m
 # Extra options passed to canu, refer to http://canu.readthedocs.io for more information:
 CANU_PARAMETERS=
 
+# BWA configuration:
+# Extra options passed to BWA mem:
+BWA_PARAMETERS=
+
+# Pilon configuration:
+# Extra parameters passed to pilon, refer to https://github.com/broadinstitute/pilon/wiki/Requirements-&-Usage
+PILON_PARAMETERS=
 
 # Number of cores to use for multithreaded applications:
 CORES=32
