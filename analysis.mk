@@ -29,5 +29,5 @@ $(BWA_BAM): $(CANU_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
 	@bwa index $(CANU_CONTIGS)
 	@echo Aligning Illumina reads using BWA mem.
 	@bwa mem -t $(CORES) $(BWA_PARAMETERS) $(CANU_CONTIGS)  $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)\
-		| samtools view -S -b -u | samtools sort -@ $(CORES) - $(BWA_BAM_PREFIX)
+		| samtools view -S -b -u - | samtools sort -@ $(CORES) - $(BWA_BAM_PREFIX)
 	@samtools index $(BWA_BAM)
