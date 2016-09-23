@@ -37,4 +37,4 @@ PILON_CONTIGS=$(WDIR)/pilon.contigs.fasta
 pilon_correct: $(PILON_CONTIGS)
 $(PILON_CONTIGS): $(CANU_CONTIGS) $(BWA_BAM)
 	@echo Correcting contigs using pilon.
-	@pilon --threads $(CORES) --genome $(CANU_CONTIGS) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
+	@pilon --threads $(CORES) --genome $(CANU_CONTIGS) --bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
