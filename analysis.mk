@@ -30,6 +30,9 @@ racon_correct: $(RACON_CONTIGS)
 $(RACON_CONTIGS): $(NANOPORE_READS) $(CANU_CONTIGS)
 	@echo Mapping nanopore reads onto canu contings using minimap.
 	@minimap $(CANU_CONTIGS) $(NANOPORE_READS) > $(MINIMAP_OVERLAPS)
+	# bin/racon test-data/lambda/reads.fastq test-data/lambda/overlaps.paf test-data/lambda/layout-miniasm.gfa.fasta test-data/lambda/consensus.fasta
+	@echo Correcting contigs using racon.
+	@racon $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(RACON_CONTIGS)
 
 # Index contigs, map Illumina reads to contigs by BWA, sorting and indexing using samtools:
 
