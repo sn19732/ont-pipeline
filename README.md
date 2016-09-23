@@ -3,7 +3,7 @@ ONT assembly and Illumina polishing pipeline
 
 This pipeline performs the following steps:
 - Assembly of nanopore reads using [Canu](http://canu.readthedocs.io).
-- OPTIONAL: polish canu contigs using [racon](https://github.com/isovic/racon).
+- Polish canu contigs using [racon](https://github.com/isovic/racon) (*optional*).
 - Map a paired-end Illumina dataset onto the contigs obtained in the previous steps using [BWA](http://bio-bwa.sourceforge.net) mem.
 - Perform correction of contigs using [pilon](https://github.com/broadinstitute/pilon/wiki) and the Illumina dataset.
 
