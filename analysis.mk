@@ -2,6 +2,8 @@
 all: $(PILON_CONTIGS)
 	@echo
 	@echo Analysis finishes.
+	@echo Contigs assembled by Canu are at: $(CANU_CONTIGS)
+	@echo Contigs polished by racon are at: $(RACON_CONTIGS)
 	@echo Pilon corrected contigs are at: $(PILON_CONTIGS)
 
 # Pipeline targets:
