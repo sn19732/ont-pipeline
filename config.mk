@@ -24,6 +24,12 @@ CANU_GENOME_SIZE=4.8m
 # Extra options passed to canu, refer to http://canu.readthedocs.io for more information:
 CANU_PARAMETERS=
 
+# Racon configuration:
+# Use racon for polishing or not:
+USE_RACON=yes
+# Extra options passed to racon:
+RACON_PARAMETERS=
+
 # BWA configuration:
 # Extra options passed to BWA mem:
 BWA_PARAMETERS=
