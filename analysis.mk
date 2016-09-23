@@ -24,12 +24,12 @@ $(CANU_CONTIGS): $(NANOPORE_READS)
 # Map nanopore reads to canu contings and use racon to perform correction based on nanopore reads only:
 
 RACON_CONTIGS=$(WDIR)/racon.contigs.fasta
-MINIMAP_OVERLAPS=$(WIDR)/minimap_overlaps.paf
+MINIMAP_OVERLAPS=$(WDIR)/minimap_overlaps.paf
 
 racon_correct: $(RACON_CONTIGS)
 $(RACON_CONTIGS): $(NANOPORE_READS) $(CANU_CONTIGS)
 	@echo Mapping nanopore reads onto canu contings using minimap.
-	@minimap $(RACON_CONTIGS) $(NANOPORE_READS) > $(MINIMAP_OVERLAPS)
+	@minimap $(CANU_CONTIGS) $(NANOPORE_READS) > $(MINIMAP_OVERLAPS)
 
 # Index contigs, map Illumina reads to contigs by BWA, sorting and indexing using samtools:
 
