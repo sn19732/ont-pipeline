@@ -15,7 +15,7 @@ REPO=git@git.oxfordnanolabs.local:bsipos/ont-assembly-polish.git
 
 # Input files:
 
-NANOPORE_READS=../small_nanopore.fq
+NANOPORE_READS=../all_nanopore.fa
 ILLUMINA_READS_PAIR1=../Pcyan_Sample7_S5_L001_R1_001.fastq.gz
 ILLUMINA_READS_PAIR2=../Pcyan_Sample7_S5_L001_R2_001.fastq.gz
 
