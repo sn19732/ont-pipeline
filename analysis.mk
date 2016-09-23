@@ -20,6 +20,13 @@ $(CANU_CONTIGS): $(NANOPORE_READS)
 
 MINIMAP_OVERLAPS=$(WDIR)/minimap_overlaps.paf
 
+ifeq ($(USE_RACON),yes)
+RACON_CONTIGS=$(WDIR)/racon.contigs.fasta
+else
+RACON_CONTIGS=$(CANU_CONTIGS)
+endif
+
+
 racon_correct: $(RACON_CONTIGS)
 $(RACON_CONTIGS): $(NANOPORE_READS) $(CANU_CONTIGS)
 ifeq ($(USE_RACON),yes)
@@ -29,12 +36,6 @@ ifeq ($(USE_RACON),yes)
 	@racon $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(CANU_CONTIGS) $(RACON_CONTIGS)
 else
 	@echo Skipping racon polishing.
-endif
-
-ifeq ($(USE_RACON),yes)
-RACON_CONTIGS=$(WDIR)/racon.contigs.fasta
-else
-RACON_CONTIGS=$(CANU_CONTIGS)
 endif
 
 # Index contigs, map Illumina reads to contigs by BWA, sorting and indexing using samtools:
