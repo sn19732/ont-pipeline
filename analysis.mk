@@ -9,7 +9,7 @@ CANU_PREFIX=canu
 CANU_DIR=$(WDIR)/canu-assembly
 CANU_CONTIGS=$(CANU_DIR)/$(CANU_PREFIX).contigs.fasta
 
-canu_assembly: $(CANU_CONTIGS)
+canu_assembly: $(CANU_CONTIGS) $(WDT)
 $(CANU_CONTIGS): $(NANOPORE_READS)
 	@echo Assembling nanopore reads using canu.
 	@canu\
