@@ -1,7 +1,7 @@
 # General pipeline parameters:
 
 # Parent directory to pipeline workspace:
-WORKSPACE=./
+WORKSPACE=.
 # Pipeline name:
 PIPELINE_NAME=assembly-polish
 # Pipeline working directory:

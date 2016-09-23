@@ -1,5 +1,8 @@
 
-all: 
+all: $(PILON_CONTIGS)
+	@echo
+	@echo Analysis finishes.
+	@echo Pilon corrected contigs are at: $(PILON_CONTIGS)
 
 # Pipeline targets:
 
@@ -31,6 +34,8 @@ $(BWA_BAM): $(CANU_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
 	@bwa mem -t $(CORES) $(BWA_PARAMETERS) $(CANU_CONTIGS)  $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)\
 		| samtools view -S -b -u - | samtools sort -@ $(CORES) - $(BWA_BAM_PREFIX)
 	@samtools index $(BWA_BAM)
+
+# Correct contigs using pilon based on the Illumina reads:
 
 PILON_CONTIGS=$(WDIR)/pilon.contigs.fasta
 
