@@ -30,3 +30,7 @@ Application dependencies
 - [racon](https://github.com/isovic/racon)
 - [pilon](https://github.com/broadinstitute/pilon/wiki)
 
+TODO
+----
+- Add the pipeline itself to the docker image.
+- Build simulation tool for evaluating the performance of correction.
