@@ -25,7 +25,12 @@ $(CANU_CONTIGS): $(NANOPORE_READS)
 
 # Map nanopore reads to canu contings and use racon to perform correction based on nanopore reads only:
 
+ifeq ($(USE_RACON),yes)
 RACON_CONTIGS=$(WDIR)/racon.contigs.fasta
+else
+RACON_CONTIGS=$(CANU_CONTIGS)
+endif
+
 MINIMAP_OVERLAPS=$(WDIR)/minimap_overlaps.paf
 
 racon_correct: $(RACON_CONTIGS)
@@ -36,7 +41,7 @@ ifeq ($(USE_RACON),yes)
 	@echo Correcting contigs using racon.
 	@racon $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(CANU_CONTIGS) $(RACON_CONTIGS)
 else
-	RACON_CONTIGS=$(CANU_CONTIGS)
+	@echo Skipping racon polishing.
 endif
 
 # Index contigs, map Illumina reads to contigs by BWA, sorting and indexing using samtools:
@@ -45,7 +50,7 @@ BWA_BAM_PREFIX=$(WDIR)/bwa_aligned_reads
 BWA_BAM=$(BWA_BAM_PREFIX).bam
 
 bwa_align: $(BWA_BAM)
-$(BWA_BAM): $(RACONN_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
+$(BWA_BAM): $(RACON_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
 	@echo Indexing contigs.
 	@bwa index $(RACON_CONTIGS)
 	@echo Aligning Illumina reads using BWA mem.
