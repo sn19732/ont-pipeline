@@ -44,7 +44,7 @@ BWA_BAM=$(BWA_BAM_PREFIX).bam
 
 bwa_align: $(BWA_BAM)
 $(BWA_BAM): $(RACON_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
-	@echo Indexing contigs.
+	@echo Indexing contigs at $(RACON_CONTIGS).
 	@bwa index $(RACON_CONTIGS)
 	@echo Aligning Illumina reads using BWA mem.
 	@bwa mem -t $(CORES) $(BWA_PARAMETERS) $(RACON_CONTIGS)  $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)\
