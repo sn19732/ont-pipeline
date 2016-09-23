@@ -1,11 +1,4 @@
 
-all: $(PILON_CONTIGS)
-	@echo
-	@echo Analysis finishes.
-	@echo Contigs assembled by Canu are at: $(CANU_CONTIGS)
-	@echo Contigs polished by racon are at: $(RACON_CONTIGS)
-	@echo Pilon corrected contigs are at: $(PILON_CONTIGS)
-
 # Pipeline targets:
 
 # Nanopore assembly by canu:
@@ -66,3 +59,11 @@ pilon_correct: $(PILON_CONTIGS)
 $(PILON_CONTIGS): $(RACON_CONTIGS) $(BWA_BAM)
 	@echo Correcting contigs using pilon.
 	@pilon --threads $(CORES) --genome $(RACON_CONTIGS) --bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
+
+all: $(PILON_CONTIGS)
+	@echo
+	@echo Analysis finishes.
+	@echo Contigs assembled by Canu are at: $(CANU_CONTIGS)
+	@echo Contigs polished by racon are at: $(RACON_CONTIGS)
+	@echo Pilon corrected contigs are at: $(PILON_CONTIGS)
+
