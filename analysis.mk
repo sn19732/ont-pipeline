@@ -31,3 +31,10 @@ $(BWA_BAM): $(CANU_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
 	@bwa mem -t $(CORES) $(BWA_PARAMETERS) $(CANU_CONTIGS)  $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)\
 		| samtools view -S -b -u - | samtools sort -@ $(CORES) - $(BWA_BAM_PREFIX)
 	@samtools index $(BWA_BAM)
+
+PILON_CONTIGS=$(WDIR)/pilon.contigs.fasta
+
+pilon_corect: $(PILON_CONTIGS)
+$(PILON_CONTIGS): $(CANU_CONTIGS) $(BWA_BAM)
+	@echo Correcting contigs using pilon.
+	@pilon --threads $(CORES) --genome $(CANU_CONTIGS) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
