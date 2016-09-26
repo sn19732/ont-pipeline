@@ -1,7 +1,7 @@
 IMAGE=ont-assembly-polish
 
 build: Dockerfile
-	docker build --pull -t $(IMAGE) .
+	docker build --pull --build-arg CACHEBUST=$(date +%s) -t $(IMAGE) .
 
 .PHONY: push
 push:
