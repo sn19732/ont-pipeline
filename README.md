@@ -19,7 +19,25 @@ Edit `config.mk` to set input files and parameters. Specifying the following is 
 The number of cores used can be specified by `CORES` (set this to the number of CPUs in your machine).
 Racon corrections can be disabled by setting `USE_RACON=no`.
 
-Then issue issue `make all` to run the pipeline. Issue `make help` for a list of utility make targets.
+Then issue issue `make all` to run the pipeline. Issue `make help` for a list of utility make targets. Issue `make clear_wdir` to delete the working directory (including all results!).
+
+Using through docker
+--------------------
+
+The easiest way to use the pipeline is through dcoker. First pull the container:
+
+```bash
+docker pull docker-registry.oxfordnanolabs.local:5000/ont-assembly-polish:latest
+```
+
+Then run the container:
+
+```bash
+docker run -v /path/to/my_data:/data -it ont-assembly-polish:latest
+```
+
+You will be dropped into the directory `/path/to/my_data`, then simply edit `config.mk` and run the pipeline.
+The `-v` flag will make the `/path/to/my_data` directory on the host available under `/data` in the container.
 
 Application dependencies
 ------------------------
