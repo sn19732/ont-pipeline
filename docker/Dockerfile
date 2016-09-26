@@ -32,7 +32,7 @@ RUN git clone https://github.com/lh3/miniasm && (cd miniasm && make) &&\
 WORKDIR /home
 
 # Clone the ont-assembly-polish project:
-RUN git clone https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish.git
+RUN GIT_SSL_NO_VERIFY=wizardry git clone https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish.git
 
 # Change into the project directory:
 WORKDIR /home/ont-assembly-polish
