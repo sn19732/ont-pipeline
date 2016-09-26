@@ -11,7 +11,7 @@ Usage
 -----
 
 Edit `config.mk` to set input files and parameters. Specifying the following is mandatory:
-- `NANOPORE_READS` - input nanopore reads (note that this **must** be valid fastq).
+- `NANOPORE_READS` - input nanopore reads (note that this **must** be a single valid fastq file, see [here](https://www.biostars.org/p/81924/) how to combine fastq files).
 - `ILLUMINA_READS_PAIR1` - fastq with the first reads of the paired-end Illumina dataset.
 - `ILLUMINA_READS_PAIR2` - fastq with the second reads of the paired-end Illumina dataset.
 - `CANU_GENOME_SIZE` - genome size parameter passed to canu.
