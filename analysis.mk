@@ -39,7 +39,7 @@ ifeq ($(USE_RACON),yes)
 	@echo Mapping nanopore reads onto canu contings using minimap.
 	@minimap $(CANU_CONTIGS) $(NANOPORE_READS) > $(MINIMAP_OVERLAPS)
 	@echo Correcting contigs using racon.
-	@$(WDIR)/racon $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(CANU_CONTIGS) $(RACON_CONTIGS)
+	@$(WDIR)/racon -t $(CORES) $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(CANU_CONTIGS) $(RACON_CONTIGS)
 else
 	@echo Skipping racon polishing.
 endif
