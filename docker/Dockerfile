@@ -28,9 +28,11 @@ RUN git clone https://github.com/lh3/minimap && (cd minimap && make) &&\
 RUN git clone https://github.com/lh3/miniasm && (cd miniasm && make) &&\
     cp miniasm/miniasm /usr/local/bin/ && rm -r miniasm
 
-# Compile and install racon:
-RUN git clone https://github.com/isovic/racon.git  && (cd racon && make modules && make tools && make -j) &&\
-    cp -r racon/bin/* /usr/local/bin/ && rm -r racon
-
 # Change working directory to home:
 WORKDIR /home
+
+# Clone the ont-assembly-polish project:
+RUN git clone https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish.git
+
+# Change into the project directory:
+WORKDIR /home/ont-assembly-polish
