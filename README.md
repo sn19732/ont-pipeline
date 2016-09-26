@@ -27,8 +27,9 @@ Application dependencies
 - [Canu](http://canu.readthedocs.io)
 - samtools
 - [BWA](http://bio-bwa.sourceforge.net)
-- [racon](https://github.com/isovic/racon)
-- [pilon](https://github.com/broadinstitute/pilon/wiki)
+- [racon](https://github.com/isovic/racon) - the pipeline will download and build it
+- [minimap](https://github.com/lh3/minimap) and [miniasm](https://github.com/lh3/miniasm)
+- [pilon](https://github.com/broadinstitute/pilon/wiki) - the pipeline will download it
 
 TODO
 ----
