@@ -6,7 +6,7 @@ before_script:
 stages:
     - build-image
 
-build-image-base:
+build-polish-image:
     stage: build-image
     script:
       - cd docker && make build && make push
