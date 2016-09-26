@@ -24,7 +24,7 @@ Then issue issue `make all` to run the pipeline. Issue `make help` for a list of
 Application dependencies
 ------------------------
 
-- Canu [Canu](http://canu.readthedocs.io)
+- [Canu](http://canu.readthedocs.io)
 - samtools
 - [BWA](http://bio-bwa.sourceforge.net)
 - [racon](https://github.com/isovic/racon)
