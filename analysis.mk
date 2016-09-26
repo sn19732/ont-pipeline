@@ -33,8 +33,8 @@ $(WDIR)/racon:
 	(cd $(WDIR) && git clone https://github.com/isovic/racon.git racon.build && cd racon.build && make modules && make tools && make -j) &&\
 	 mv $(WDIR)/racon.build/bin/racon $(WDIR)/ && rm -fr racon.build
 
-racon_correct: $(RACON_CONTIGS) $(WDIR)/racon
-$(RACON_CONTIGS): $(NANOPORE_READS) $(CANU_CONTIGS)
+racon_correct: $(RACON_CONTIGS)
+$(RACON_CONTIGS): $(NANOPORE_READS) $(CANU_CONTIGS) $(WDIR)/racon
 ifeq ($(USE_RACON),yes)
 	@echo Mapping nanopore reads onto canu contings using minimap.
 	@minimap $(CANU_CONTIGS) $(NANOPORE_READS) > $(MINIMAP_OVERLAPS)
