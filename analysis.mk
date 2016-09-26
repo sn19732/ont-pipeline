@@ -26,14 +26,20 @@ else
 RACON_CONTIGS=$(CANU_CONTIGS)
 endif
 
+# Racon has to be rebuilt on the current machine or it might fail.
 
-racon_correct: $(RACON_CONTIGS)
+build_racon: $(WDIR)/racon
+$(WDIR)/racon:
+	(cd $(WDIR) && git clone https://github.com/isovic/racon.git racon.build && cd racon.build && make modules && make tools && make -j) &&\
+	 mv $(WDIR)/racon.build/bin/racon $(WDIR)/ && rm -fr racon.build
+
+racon_correct: $(RACON_CONTIGS) $(WDIR)/racon
 $(RACON_CONTIGS): $(NANOPORE_READS) $(CANU_CONTIGS)
 ifeq ($(USE_RACON),yes)
 	@echo Mapping nanopore reads onto canu contings using minimap.
 	@minimap $(CANU_CONTIGS) $(NANOPORE_READS) > $(MINIMAP_OVERLAPS)
 	@echo Correcting contigs using racon.
-	@racon $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(CANU_CONTIGS) $(RACON_CONTIGS)
+	@$(WDIR)/racon $(NANOPORE_READS) $(MINIMAP_OVERLAPS) $(CANU_CONTIGS) $(RACON_CONTIGS)
 else
 	@echo Skipping racon polishing.
 endif
