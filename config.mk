@@ -37,6 +37,10 @@ BWA_PARAMETERS=
 # Pilon configuration:
 # Extra parameters passed to pilon, refer to https://github.com/broadinstitute/pilon/wiki/Requirements-&-Usage
 PILON_PARAMETERS=
+# Location of pilon release to use:
+PILON_URL=https://github.com/broadinstitute/pilon/releases/download/v1.20/pilon-1.20.jar
+# Name of pilon jar file:
+PILON_JAR=pilon-1.20.jar
 
 # Number of cores to use for multithreaded applications:
 CORES=32

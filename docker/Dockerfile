@@ -32,9 +32,5 @@ RUN git clone https://github.com/lh3/miniasm && (cd miniasm && make) &&\
 RUN git clone https://github.com/isovic/racon.git  && (cd racon && make modules && make tools && make -j) &&\
     cp -r racon/bin/* /usr/local/bin/ && rm -r racon
 
-# Download and install pilon.
-RUN wget https://github.com/broadinstitute/pilon/releases/download/v1.20/pilon-1.20.jar && echo 'java -jar /opt/pilon-1.20.jar $@' > /usr/local/bin/pilon &&\
-    chmod +x /usr/local/bin/pilon
-
 # Change working directory to home:
 WORKDIR /home

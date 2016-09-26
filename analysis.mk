@@ -62,10 +62,15 @@ $(BWA_BAM): $(RACON_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
 
 PILON_CONTIGS=$(WDIR)/pilon.contigs.fasta
 
+# Get pilon:
+get_pilon: $(WDIR)/$(PILON_JAR)
+$(WDIR)/$(PILON_JAR):
+	(cd $(WDIR) && wget $(PILON_URL))
+
 pilon_correct: $(PILON_CONTIGS)
 $(PILON_CONTIGS): $(RACON_CONTIGS) $(BWA_BAM)
 	@echo Correcting contigs using pilon.
-	@pilon --threads $(CORES) --genome $(RACON_CONTIGS) --bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
+	@java -jar $(PILON_JAR) --threads $(CORES) --genome $(RACON_CONTIGS) --bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
 
 all: $(PILON_CONTIGS)
 	@echo
