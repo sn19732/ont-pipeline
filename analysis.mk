@@ -71,7 +71,7 @@ pilon_correct: $(PILON_CONTIGS)
 $(PILON_CONTIGS): $(RACON_CONTIGS) $(BWA_BAM) $(WDIR)/$(PILON_JAR)
 	@echo Correcting contigs using pilon.
 	@java -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -jar $(WDIR)/$(PILON_JAR) --threads $(CORES) --genome $(RACON_CONTIGS)\
-	--bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
+		--bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
 
 all: $(PILON_CONTIGS)
 	@echo
