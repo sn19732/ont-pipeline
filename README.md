@@ -15,6 +15,7 @@ Edit `config.mk` to set input files and parameters. Specifying the following is 
 - `ILLUMINA_READS_PAIR1` - fastq with the first reads of the paired-end Illumina dataset.
 - `ILLUMINA_READS_PAIR2` - fastq with the second reads of the paired-end Illumina dataset.
 - `CANU_GENOME_SIZE` - genome size parameter passed to canu.
+- `PILON_MAX_MEM` - maximum amount of memory used by pilon. Increase this is if pilon crashes because of running out of memory.
 
 The number of cores used can be specified by `CORES` (set this to the number of CPUs in your machine).
 Racon corrections can be disabled by setting `USE_RACON=no`.

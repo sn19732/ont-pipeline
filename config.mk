@@ -41,6 +41,8 @@ PILON_PARAMETERS=
 PILON_URL=https://github.com/broadinstitute/pilon/releases/download/v1.20/pilon-1.20.jar
 # Name of pilon jar file:
 PILON_JAR=pilon-1.20.jar
+# Maximum amount of memory allocated by pilon. Increase this if pilon fails because of memory issues.
+PILON_MAX_MEM=32G
 
 # Number of cores to use for multithreaded applications:
 CORES=32
