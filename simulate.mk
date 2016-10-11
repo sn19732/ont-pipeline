@@ -12,7 +12,14 @@ simulate_genome:  $(SIMULATED_GENOME)
 $(SIMULATED_GENOME):
 	@simulate_genome.py -n $(NR_CHROMS) -m $(MEAN_CHROM_LENGTH) -a $(CHROM_GAMMA_SHAPE) -b $(CHROM_BASE_FREQS) $(SIMULATED_GENOME)
 
+# Download yeast genome from Ensembl:
 
+YEAST_GENOME=data/yeast_genome.fas
+fetch_genome: $(YEAST_GENOME)
+
+$(YEAST_GENOME):
+	@wget ftp://ftp.ensembl.org/pub/release-86/fasta/saccharomyces_cerevisiae/dna/Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz
+	@gzip -d Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa.gz; mv Saccharomyces_cerevisiae.R64-1-1.dna.toplevel.fa $(YEAST_GENOME)
 # Simulate long reads:
 
 SIMULATED_LONG_READS=data/simulated/long_reads.fastq
@@ -24,15 +31,16 @@ LONG_READS_ERROR_RATE=0.1
 LONG_READS_ERROR_WEIGHTS=1,1,4
 
 simulate_long_reads: $(SIMULATED_LONG_READS)
-$(SIMULATED_LONG_READS): $(SIMULATED_GENOME)
+$(SIMULATED_LONG_READS): $(YEAST_GENOME)
 	@simulate_sequencing_simple.py -n $(NR_SIM_LONG_READS) -m $(LONG_READS_MEAN_LENGTH) -a $(LONG_READS_GAMMA_SHAPE)\
-		-l $(LONG_READS_MIN_LENGTH) -e $(LONG_READS_ERROR_RATE) -w $(LONG_READS_ERROR_WEIGHTS) $(SIMULATED_GENOME) $(SIMULATED_LONG_READS)
+		-l $(LONG_READS_MIN_LENGTH) -e $(LONG_READS_ERROR_RATE) -w $(LONG_READS_ERROR_WEIGHTS) $(YEAST_GENOME) $(SIMULATED_LONG_READS)
 
 
 # Simulate short reads using simNGS:
 
 RUNFILE=data/s_1_4x.runfile
-NR_SHORT_READS=30000000
+COVERAGE=30.0
+READ_LENGTH=101
 
-simulate_short_reads: $(SIMULATED_GENOME)
-	@(simLibrary -n $(NR_SHORT_READS)  $(SIMULATED_GENOME)| simNGS -p paired $(RUNFILE) -O data/simulated/short_reads)
+simulate_short_reads: $(YEAST_GENOME)
+	@(simLibrary -r $(READ_LENGTH) -n $(NR_SHORT_READS)  $(YEAST_GENOME)| simNGS -p paired $(RUNFILE) -O data/simulated/short_reads)
