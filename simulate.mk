@@ -1,0 +1,38 @@
+
+
+# Simulate a synthetic genome:
+
+SIMULATED_GENOME=data/simulated/genome.fas
+NR_CHROMS=23
+MEAN_CHROM_LENGTH=5000000
+CHROM_GAMMA_SHAPE=0.5
+CHROM_BASE_FREQS=1,1,1,1
+
+simulate_genome:  $(SIMULATED_GENOME)
+$(SIMULATED_GENOME):
+	@simulate_genome.py -n $(NR_CHROMS) -m $(MEAN_CHROM_LENGTH) -a $(CHROM_GAMMA_SHAPE) -b $(CHROM_BASE_FREQS) $(SIMULATED_GENOME)
+
+
+# Simulate long reads:
+
+SIMULATED_LONG_READS=data/simulated/long_reads.fastq
+NR_SIM_LONG_READS=500000
+LONG_READS_MEAN_LENGTH=5000
+LONG_READS_GAMMA_SHAPE=0.5
+LONG_READS_MIN_LENGTH=600
+LONG_READS_ERROR_RATE=0.1
+LONG_READS_ERROR_WEIGHTS=1,1,4
+
+simulate_long_reads: $(SIMULATED_LONG_READS)
+$(SIMULATED_LONG_READS): $(SIMULATED_GENOME)
+	@simulate_sequencing_simple.py -n $(NR_SIM_LONG_READS) -m $(LONG_READS_MEAN_LENGTH) -a $(LONG_READS_GAMMA_SHAPE)\
+		-l $(LONG_READS_MIN_LENGTH) -e $(LONG_READS_ERROR_RATE) -w $(LONG_READS_ERROR_WEIGHTS) $(SIMULATED_GENOME) $(SIMULATED_LONG_READS)
+
+
+# Simulate short reads using simNGS:
+
+RUNFILE=data/s_1_4x.runfile
+NR_SHORT_READS=30000000
+
+simulate_short_reads: $(SIMULATED_GENOME)
+	@(simLibrary -n $(NR_SHORT_READS)  $(SIMULATED_GENOME)| simNGS -p paired $(RUNFILE) -O data/simulated/short_reads)
