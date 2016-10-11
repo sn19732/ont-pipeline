@@ -43,4 +43,4 @@ COVERAGE=30.0
 READ_LENGTH=101
 
 simulate_short_reads: $(YEAST_GENOME)
-	@(simLibrary -r $(READ_LENGTH) -n $(NR_SHORT_READS)  $(YEAST_GENOME)| simNGS -p paired $(RUNFILE) -O data/simulated/short_reads)
+	@(simLibrary -r $(READ_LENGTH) -x $(COVERAGE)  $(YEAST_GENOME)| simNGS -p paired $(RUNFILE) -O data/simulated/short_reads)
