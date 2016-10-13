@@ -30,7 +30,7 @@ RUN git clone https://github.com/lh3/miniasm && (cd miniasm && make) &&\
 
 # Compile and install simNGS, a tool for simulating Illumina sequencing:
 RUN git clone https://github.com/timmassingham/simNGS.git && (cd simNGS/src && make -f Makefile.linux) &&\
-    cp simNGS/bin/* /usr/local/bin/ && rm -r simnNGS
+    cp simNGS/bin/* /usr/local/bin/ && rm -r simNGS
 
 # Change working directory to home:
 WORKDIR /home
