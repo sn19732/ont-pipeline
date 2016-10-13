@@ -3,7 +3,7 @@ MAINTAINER Botond.Sipos@nanoporetech.com
 
 # Upgrade and install necessary packages:
 RUN apt-get update && apt-get upgrade -y &&\
-    apt-get install -y sudo git make build-essential mummer python-numpy python-matplotlib time bwa samtools software-properties-common gnuplot\
+    apt-get install -y sudo git make build-essential mummer last-align python-numpy python-matplotlib time bwa samtools software-properties-common gnuplot\
     zlib1g-dev mc wget
 
 # Install latest Java:
@@ -28,12 +28,16 @@ RUN git clone https://github.com/lh3/minimap && (cd minimap && make) &&\
 RUN git clone https://github.com/lh3/miniasm && (cd miniasm && make) &&\
     cp miniasm/miniasm /usr/local/bin/ && rm -r miniasm
 
+# Compile and install simNGS, a tool for simulating Illumina sequencing:
+RUN git clone https://github.com/timmassingham/simNGS.git && (cd simNGS/src && make -f Makefile.linux) &&\
+    cp simNGS/bin/* /usr/local/bin/ && rm -r simnNGS
+
 # Change working directory to home:
 WORKDIR /home
 
 # Clone the ont-assembly-polish project:
-ARG CACHEBUST=1
-RUN GIT_SSL_NO_VERIFY=wizardry git clone https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish.git
+ARG CACHEBUST
+RUN DUMMY=${CACHEBUST} GIT_SSL_NO_VERIFY=wizardry git clone https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish.git
 
 # Change into the project directory:
 WORKDIR /home/ont-assembly-polish
