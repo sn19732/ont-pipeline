@@ -8,7 +8,7 @@ $(WDT):
 # Delete working directory:
 .PHONY: clean_wdir
 clean_wdir:
-	@rm -r $(WDIR)
+	@rm -fr $(WDIR)
 
 # Delete results:
 .PHONY: clean_res

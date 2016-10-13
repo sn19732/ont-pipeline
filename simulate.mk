@@ -24,11 +24,12 @@ $(YEAST_GENOME):
 
 SIMULATED_LONG_READS=data/simulated/long_reads.fastq
 NR_SIM_LONG_READS=500000
-LONG_READS_MEAN_LENGTH=5000
+NR_SIM_LONG_READS=1000
+LONG_READS_MEAN_LENGTH=6000
 LONG_READS_GAMMA_SHAPE=0.5
 LONG_READS_MIN_LENGTH=600
 LONG_READS_ERROR_RATE=0.1
-LONG_READS_ERROR_WEIGHTS=1,1,4
+LONG_READS_ERROR_WEIGHTS=1,1,1
 
 simulate_long_reads: $(SIMULATED_LONG_READS)
 $(SIMULATED_LONG_READS): $(YEAST_GENOME)
@@ -39,8 +40,14 @@ $(SIMULATED_LONG_READS): $(YEAST_GENOME)
 # Simulate short reads using simNGS:
 
 RUNFILE=data/s_1_4x.runfile
-COVERAGE=30.0
+COVERAGE=60.0
 READ_LENGTH=101
 
 simulate_short_reads: $(YEAST_GENOME)
 	@(simLibrary -r $(READ_LENGTH) -x $(COVERAGE)  $(YEAST_GENOME)| simNGS -p paired $(RUNFILE) -O data/simulated/short_reads)
+
+# Get rid of simulated data:
+.PHONY: clean_simulated
+clean_simulated:
+	@rm $(SIMULATED_LONG_READS)
+	@rm data/simulated/short_reads_end*

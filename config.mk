@@ -2,6 +2,7 @@
 
 # Parent directory to pipeline workspace:
 WORKSPACE=.
+WORKSPACE=/home/OXFORDNANOLABS/bsipos/sc/Workspaces
 # Pipeline name:
 PIPELINE_NAME=assembly-polish
 # Pipeline working directory:
@@ -15,9 +16,10 @@ REPO=git@git.oxfordnanolabs.local:bsipos/ont-assembly-polish.git
 
 # Input files:
 
-NANOPORE_READS=../all_nanopore_mock30.fastq
-ILLUMINA_READS_PAIR1=../Pcyan_Sample7_S5_L001_R1_001.fastq.gz
-ILLUMINA_READS_PAIR2=../Pcyan_Sample7_S5_L001_R2_001.fastq.gz
+ 
+NANOPORE_READS=data/simulated/long_reads.fastq
+ILLUMINA_READS_PAIR1=data/simulated/short_reads_end1.fq
+ILLUMINA_READS_PAIR2=data/simulated/short_reads_end2.fq
 
 # Canu configuration:
 CANU_GENOME_SIZE=4.8m
