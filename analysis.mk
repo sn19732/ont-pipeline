@@ -51,12 +51,16 @@ BWA_BAM=$(BWA_BAM_PREFIX).bam
 
 bwa_align: $(BWA_BAM)
 $(BWA_BAM): $(RACON_CONTIGS) $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)
+ifeq ($(USE_PILON),yes)
 	@echo Indexing contigs at $(RACON_CONTIGS).
 	@bwa index $(RACON_CONTIGS)
 	@echo Aligning Illumina reads using BWA mem.
 	@bwa mem -t $(CORES) $(BWA_PARAMETERS) $(RACON_CONTIGS)  $(ILLUMINA_READS_PAIR1) $(ILLUMINA_READS_PAIR2)\
 		| samtools view -S -b -u - | samtools sort -@ $(CORES) - $(BWA_BAM_PREFIX)
 	@samtools index $(BWA_BAM)
+else
+	@echo Skipping BWA alignment.
+endif
 
 # Correct contigs using pilon based on the Illumina reads:
 
@@ -65,13 +69,21 @@ PILON_CONTIGS=$(WDIR)/pilon.contigs.fasta
 # Get pilon:
 get_pilon: $(WDIR)/$(PILON_JAR)
 $(WDIR)/$(PILON_JAR):
+ifeq ($(USE_PILON),yes)
 	(cd $(WDIR) && wget $(PILON_URL))
+else
+	@echo Skipping pilon download.
+endif
 
 pilon_correct: $(PILON_CONTIGS)
 $(PILON_CONTIGS): $(RACON_CONTIGS) $(BWA_BAM) $(WDIR)/$(PILON_JAR)
+ifeq ($(USE_PILON),yes)
 	@echo Correcting contigs using pilon.
 	@java -Xmx$(PILON_MAX_MEM) -XX:+UseConcMarkSweepGC -XX:-UseGCOverheadLimit -jar $(WDIR)/$(PILON_JAR) --threads $(CORES) --genome $(RACON_CONTIGS)\
 		--bam $(BWA_BAM) --outdir $(WDIR) --output pilon.contigs $(PILON_PARAMETERS)
+else
+	@echo Skipping pilon polishing.
+endif
 
 all: $(PILON_CONTIGS)
 	@echo

@@ -18,7 +18,7 @@ Edit `config.mk` to set input files and parameters. Specifying the following is 
 - `PILON_MAX_MEM` - maximum amount of memory used by pilon. Increase this is if pilon crashes because of running out of memory.
 
 The number of cores used can be specified by `CORES` (set this to the number of CPUs in your machine).
-Racon corrections can be disabled by setting `USE_RACON=no`.
+Racon corrections can be disabled by setting `USE_RACON=no`. Pilon polishing can be disabled by setting `USE_PILON=no`.
 
 Then issue issue `make all` to run the pipeline. Issue `make help` for a list of utility make targets. Issue `make clear_wdir` to delete the working directory (including all results!).
 

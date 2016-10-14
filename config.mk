@@ -37,6 +37,8 @@ RACON_PARAMETERS=
 BWA_PARAMETERS=
 
 # Pilon configuration:
+# Use pilon for polishing or not:
+USE_PILON=yes
 # Extra parameters passed to pilon, refer to https://github.com/broadinstitute/pilon/wiki/Requirements-&-Usage
 PILON_PARAMETERS=
 # Location of pilon release to use:
