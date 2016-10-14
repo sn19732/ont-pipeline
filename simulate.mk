@@ -39,7 +39,7 @@ $(SIMULATED_LONG_READS): $(YEAST_GENOME)
 # Simulate short reads using simNGS:
 
 RUNFILE=data/s_1_4x.runfile
-COVERAGE=60.0
+COVERAGE=120.0
 READ_LENGTH=101
 
 simulate_short_reads: $(YEAST_GENOME)
