@@ -22,7 +22,7 @@ ILLUMINA_READS_PAIR1=data/simulated/short_reads_end1.fq
 ILLUMINA_READS_PAIR2=data/simulated/short_reads_end2.fq
 
 # Canu configuration:
-CANU_GENOME_SIZE=4.8m
+CANU_GENOME_SIZE=12m
 # Extra options passed to canu, refer to http://canu.readthedocs.io for more information:
 CANU_PARAMETERS=
 
