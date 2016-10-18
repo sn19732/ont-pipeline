@@ -54,10 +54,15 @@ clean_simulated:
 FULLP_CONTIGS=$(PILON_CONTIGS)_fullp
 SHORTP_CONTIGS=$(PILON_CONTIGS)_shortp
 
-DDIF_PK_CANU=results/ddiff__canu.pk
+DDIF_PK_CANU=results/ddiff_canu.pk
 DDIF_PK_RACON=results/ddiff_racon.pk
 DDIF_PK_RACON_PILON=results/ddiff_racon_pilon.pk
-DDIF_PK_canu_PILON=results/ddiff_canu_pilon.pk
+DDIF_PK_CANU_PILON=results/ddiff_canu_pilon.pk
+
+LA_PK_CANU=results/la_canu.pk
+LA_PK_RACON=results/la_racon.pk
+LA_PK_RACON_PILON=results/la_racon_pilon.pk
+LA_PK_CANU_PILON=results/la_canu_pilon.pk
 
 evaluate:
 	@echo Running canu->racon->pilon pipeline.
@@ -67,7 +72,13 @@ evaluate:
 	@echo Running canu->pilon pipeline.
 	@make -f Makefile all USE_RACON=no
 	@mv $(PILON_CONTIGS) $(SHORTP_CONTIGS)
+
+calc_accuracies:
 	@echo Calculating accuracies by dnadiff:
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(CANU_CONTIGS) -p $(DDIF_PK_CANU)
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(FULLP_CONTIGS) -p $(DDIF_PK_RACON_PILON)
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(SHORTP_CONTIGS) -p $(DDIF_PK_CANU_PILON)
+	@echo Calculating accuracies by lastal:
+	compare_genomes_lastal.py $(YEAST_GENOME) $(CANU_CONTIGS) -p $(LA_PK_CANU)
+	compare_genomes_lastal.py $(YEAST_GENOME) $(FULLP_CONTIGS) -p $(LA_PK_RACON_PILON)
+	compare_genomes_lastal.py $(YEAST_GENOME) $(SHORTP_CONTIGS) -p $(LA_PK_CANU_PILON)
