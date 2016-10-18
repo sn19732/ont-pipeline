@@ -51,9 +51,11 @@ clean_simulated:
 	@rm $(SIMULATED_LONG_READS)
 	@rm data/simulated/short_reads_end*
 
+FULLP_CONTIGS=$(PILON_CONTIGS)_fullp
 evaluate:
 	@echo Running canu->racon->pilon pipeline.
 	@make all
-	@echo $(PILON_CONTIGS) 
+	@cp $(PILON_CONTIGS) $(FULLP_CONTIGS)
+	@rm $(PILON_CONTIGS)
 	@echo Running canu->pilon pipeline.
-	@make all
+	@make all USE_RACON=no
