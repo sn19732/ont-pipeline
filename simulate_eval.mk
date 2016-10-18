@@ -76,9 +76,11 @@ evaluate:
 calc_accuracies:
 	@echo Calculating accuracies by dnadiff:
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(CANU_CONTIGS) -p $(DDIF_PK_CANU)
+	compare_genomes_dnadiff.py $(YEAST_GENOME) $(RACON_CONTIGS) -p $(DDIF_PK_RACON)
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(FULLP_CONTIGS) -p $(DDIF_PK_RACON_PILON)
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(SHORTP_CONTIGS) -p $(DDIF_PK_CANU_PILON)
 	@echo Calculating accuracies by lastal:
 	compare_genomes_lastal.py $(YEAST_GENOME) $(CANU_CONTIGS) -p $(LA_PK_CANU)
+	compare_genomes_lastal.py $(YEAST_GENOME) $(RACON_CONTIGS) -p $(LA_PK_RACON)
 	compare_genomes_lastal.py $(YEAST_GENOME) $(FULLP_CONTIGS) -p $(LA_PK_RACON_PILON)
 	compare_genomes_lastal.py $(YEAST_GENOME) $(SHORTP_CONTIGS) -p $(LA_PK_CANU_PILON)
