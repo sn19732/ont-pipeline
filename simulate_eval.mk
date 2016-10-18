@@ -54,8 +54,8 @@ clean_simulated:
 FULLP_CONTIGS=$(PILON_CONTIGS)_fullp
 evaluate:
 	@echo Running canu->racon->pilon pipeline.
-	@make all
+	@make -f Makefile all
 	@cp $(PILON_CONTIGS) $(FULLP_CONTIGS)
 	@rm $(BWA_BAM) $(PILON_CONTIGS)
 	@echo Running canu->pilon pipeline.
-	@make all USE_RACON=no
+	@make -f Makefile all USE_RACON=no
