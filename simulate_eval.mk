@@ -64,7 +64,7 @@ LA_PK_RACON=results/la_racon.pk
 LA_PK_RACON_PILON=results/la_racon_pilon.pk
 LA_PK_CANU_PILON=results/la_canu_pilon.pk
 
-evaluate:
+evaluate: ## run short and full pipelines on simulated data
 	@echo Running canu->racon->pilon pipeline.
 	@make -f Makefile all
 	@mv $(PILON_CONTIGS) $(FULLP_CONTIGS)
@@ -73,7 +73,7 @@ evaluate:
 	@make -f Makefile all USE_RACON=no
 	@mv $(PILON_CONTIGS) $(SHORTP_CONTIGS)
 
-calc_accuracies:
+calc_accuracies: ## calculate accuracies (based on simulated data)
 	@echo Calculating accuracies by dnadiff:
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(CANU_CONTIGS) -p $(DDIF_PK_CANU)
 	compare_genomes_dnadiff.py $(YEAST_GENOME) $(RACON_CONTIGS) -p $(DDIF_PK_RACON)
@@ -84,3 +84,9 @@ calc_accuracies:
 	compare_genomes_lastal.py $(YEAST_GENOME) $(RACON_CONTIGS) -p $(LA_PK_RACON)
 	compare_genomes_lastal.py $(YEAST_GENOME) $(FULLP_CONTIGS) -p $(LA_PK_RACON_PILON)
 	compare_genomes_lastal.py $(YEAST_GENOME) $(SHORTP_CONTIGS) -p $(LA_PK_CANU_PILON)
+
+DDFIF_PLOTS=results/ddif_plots.pdf
+LA_PLOTS=results/la_plots.pdf
+plot_accuracies:
+	@scripts/plot_accuracies.py -t dnadiff -r $(DDFIF_PLOTS) -i "canu:$(DDIF_PK_CANU),racon:$(DDIF_PK_RACON),racon+pilon:$(DDIF_PK_RACON_PILON),canu+pilon:$(DDIF_PK_CANU_PILON)"
+	@scripts/plot_accuracies.py -t lastal -r $(LA_PLOTS) -i "canu:$(LA_PK_CANU),racon:$(LA_PK_RACON),racon+pilon:$(LA_PK_RACON_PILON),canu+pilon:$(LA_PK_CANU_PILON)"
