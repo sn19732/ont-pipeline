@@ -56,6 +56,6 @@ evaluate:
 	@echo Running canu->racon->pilon pipeline.
 	@make all
 	@cp $(PILON_CONTIGS) $(FULLP_CONTIGS)
-	@rm $(PILON_CONTIGS)
+	@rm $(BWA_BAM) $(PILON_CONTIGS)
 	@echo Running canu->pilon pipeline.
 	@make all USE_RACON=no
