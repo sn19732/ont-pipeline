@@ -63,7 +63,7 @@ evaluate:
 	@echo Running canu->racon->pilon pipeline.
 	@make -f Makefile all
 	@mv $(PILON_CONTIGS) $(FULLP_CONTIGS)
-	@rm $(BWA_BAM) $(PILON_CONTIGS)
+	@rm $(BWA_BAM)
 	@echo Running canu->pilon pipeline.
 	@make -f Makefile all USE_RACON=no
 	@mv $(PILON_CONTIGS) $(SHORTP_CONTIGS)
