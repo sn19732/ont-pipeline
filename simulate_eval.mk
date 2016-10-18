@@ -52,4 +52,8 @@ clean_simulated:
 	@rm data/simulated/short_reads_end*
 
 evaluate:
+	@echo Running canu->racon->pilon pipeline.
+	@make all
+	@echo $(PILON_CONTIGS) 
+	@echo Running canu->pilon pipeline.
 	@make all
