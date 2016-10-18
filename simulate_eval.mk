@@ -52,10 +52,22 @@ clean_simulated:
 	@rm data/simulated/short_reads_end*
 
 FULLP_CONTIGS=$(PILON_CONTIGS)_fullp
+SHORTP_CONTIGS=$(PILON_CONTIGS)_shortp
+
+DDIF_PK_CANU=results/ddiff__canu.pk
+DDIF_PK_RACON=results/ddiff_racon.pk
+DDIF_PK_RACON_PILON=results/ddiff_racon_pilon.pk
+DDIF_PK_canu_PILON=results/ddiff_canu_pilon.pk
+
 evaluate:
 	@echo Running canu->racon->pilon pipeline.
 	@make -f Makefile all
-	@cp $(PILON_CONTIGS) $(FULLP_CONTIGS)
+	@mv $(PILON_CONTIGS) $(FULLP_CONTIGS)
 	@rm $(BWA_BAM) $(PILON_CONTIGS)
 	@echo Running canu->pilon pipeline.
 	@make -f Makefile all USE_RACON=no
+	@mv $(PILON_CONTIGS) $(SHORTP_CONTIGS)
+	@echo Calculating accuracies by dnadiff:
+	compare_genomes_dnadiff.py $(YEAST_GENOME) $(CANU_CONTIGS) -p $(DDIF_PK_CANU)
+	compare_genomes_dnadiff.py $(YEAST_GENOME) $(FULLP_CONTIGS) -p $(DDIF_PK_RACON_PILON)
+	compare_genomes_dnadiff.py $(YEAST_GENOME) $(SHORTP_CONTIGS) -p $(DDIF_PK_CANU_PILON)
