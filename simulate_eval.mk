@@ -50,3 +50,6 @@ simulate_short_reads: $(YEAST_GENOME)
 clean_simulated:
 	@rm $(SIMULATED_LONG_READS)
 	@rm data/simulated/short_reads_end*
+
+evaluate:
+	@make all
