@@ -1,17 +1,4 @@
 
-
-# Simulate a synthetic genome:
-
-SIMULATED_GENOME=data/simulated/genome.fas
-NR_CHROMS=23
-MEAN_CHROM_LENGTH=5000000
-CHROM_GAMMA_SHAPE=0.5
-CHROM_BASE_FREQS=1,1,1,1
-
-simulate_genome:  $(SIMULATED_GENOME)
-$(SIMULATED_GENOME):
-	@simulate_genome.py -n $(NR_CHROMS) -m $(MEAN_CHROM_LENGTH) -a $(CHROM_GAMMA_SHAPE) -b $(CHROM_BASE_FREQS) $(SIMULATED_GENOME)
-
 # Download yeast genome from Ensembl:
 
 YEAST_GENOME=data/yeast_genome.fas
