@@ -75,5 +75,5 @@ calc_accuracies: ## calculate accuracies (based on simulated data)
 DDFIF_PLOTS=results/ddif_plots.pdf
 LA_PLOTS=results/la_plots.pdf
 plot_accuracies:
-	@scripts/plot_accuracies.py -t dnadiff -r $(DDFIF_PLOTS) -i "canu:$(DDIF_PK_CANU),racon:$(DDIF_PK_RACON),canu+racon+pilon:$(DDIF_PK_RACON_PILON),canu+pilon:$(DDIF_PK_CANU_PILON)"
-	@scripts/plot_accuracies.py -t lastal -r $(LA_PLOTS) -i "canu:$(LA_PK_CANU),racon:$(LA_PK_RACON),canu+racon+pilon:$(LA_PK_RACON_PILON),canu+pilon:$(LA_PK_CANU_PILON)"
+	@scripts/plot_accuracies.py -t dnadiff -r $(DDFIF_PLOTS) -i "canu:$(DDIF_PK_CANU),canu+racon:$(DDIF_PK_RACON),canu+racon+pilon:$(DDIF_PK_RACON_PILON),canu+pilon:$(DDIF_PK_CANU_PILON)"
+	@scripts/plot_accuracies.py -t lastal -r $(LA_PLOTS) -i "canu:$(LA_PK_CANU),canu+racon:$(LA_PK_RACON),canu+racon+pilon:$(LA_PK_RACON_PILON),canu+pilon:$(LA_PK_CANU_PILON)"
