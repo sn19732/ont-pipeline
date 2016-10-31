@@ -71,3 +71,13 @@ We have measured the accuracy of recovered contigs after various correction stag
 ![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/ddif_plots.png "dnadiff accuracies")
 
 ![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/la_plots.png "lastal accuracies")
+
+Conclusions from the evaluation:
+- At the simulated error rate, canu alone recovers high accuracy contigs.
+- Both dnadiff and lastal accuracies suggest that racon and pilon polishing increases contig accuracy.
+- Lastal accuracies suggest that the effect of racon and pilon polishing is additive, though the increase in accuracy is not substantial.
+
+TODO
+----
+- Move docker image to docker hub.
+- Move repo to GitHub and fix links.
