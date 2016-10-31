@@ -62,12 +62,12 @@ Long reads were simulated using an in-house script under the following condition
 - Simulated error rate was 0.1, errors were uncorrelated events of size one with substitution:insertion:deleltion ratio of 1:1:2
 
 Short reads were simulated using [simLibrary and simNGS](https://www.ebi.ac.uk/goldman-srv/simNGS/):
-- Simulated Illumina data consisted of paired-end reads of size 101
+- Simulated Illumina data consisted of paired-end reads of size 101, with the default insert length of 400
 - Simulation runfile can be found under: data/s_1_4x.runfile
-- The number of simulated read pairs was  (360x fragment coverage)
+- The number of simulated read pairs was 21666129 (360x fragment coverage)
 
 We have measured the accuracy of recovered contigs after various correction stages using dnadiff from the [mummer](http://mummer.sourceforge.net/) package and [last](http://last.cbrc.jp/):
 
-![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/ddif_plots.png "dnadiff accuracies")
+![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/ddif_plots.png "dnadiff accuracies" =600x)
 
-![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/la_plots.png "lastal accuracies")
+![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/la_plots.png "lastal accuracies" =600x)
