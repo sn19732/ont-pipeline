@@ -68,6 +68,6 @@ Short reads were simulated using [simLibrary and simNGS](https://www.ebi.ac.uk/g
 
 We have measured the accuracy of recovered contigs after various correction stages using dnadiff from the [mummer](http://mummer.sourceforge.net/) package and [last](http://last.cbrc.jp/):
 
-![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/ddif_plots.png "dnadiff accuracies"){:width="300px"}
+![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/ddif_plots.png "dnadiff accuracies")
 
-![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/la_plots.png "lastal accuracies"){:width="300px"}
+![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/la_plots.png "lastal accuracies")
