@@ -44,12 +44,30 @@ Application dependencies
 ------------------------
 
 - [Canu](http://canu.readthedocs.io)
-- samtools
+- [samtools](http://www.htslib.org/)
 - [BWA](http://bio-bwa.sourceforge.net)
 - [racon](https://github.com/isovic/racon) - the pipeline will download and build it
 - [minimap](https://github.com/lh3/minimap) and [miniasm](https://github.com/lh3/miniasm)
 - [pilon](https://github.com/broadinstitute/pilon/wiki) - the pipeline will download it
 
-TODO
-----
-- Build simulation tool for evaluating the performance of correction.
+Evaluation on simulated data
+----------------------------
+
+In order to evaluate the performance of the pipeline we have simulated long and short reads from the yeast genome and measured the accuracy of recovered contigs
+after various stages of correction.
+
+Long reads were simulated using an in-house script under the following conditions:
+- Number of reads: 150000
+- Read lengths sampled from a gamma distribution with mean 6000 and shape 0.5 and a minimum read length of 600
+- Simulated error rate was 0.1, errors were uncorrelated events of size one with substitution:insertion:deleltion ratio of 1:1:2
+
+Short reads were simulated using [simLibrary and simNGS](https://www.ebi.ac.uk/goldman-srv/simNGS/):
+- Simulated Illumina data consisted of paired-end reads of size 101
+- Simulation runfile can be found under: data/s_1_4x.runfile
+- The number of simulated read pairs was  (360x fragment coverage)
+
+We have measured the accuracy of recovered contigs after various correction stages using dnadiff from the [mummer](http://mummer.sourceforge.net/) package and [last](http://last.cbrc.jp/):
+
+![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/blob/master/results/ddif_plots.png "dnadiff accuracies")
+
+![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/blob/master/results/la_plots.png "dnadiff accuracies")
