@@ -69,9 +69,9 @@ Short reads were simulated using [simLibrary and simNGS](https://www.ebi.ac.uk/g
 
 We have measured the accuracy of recovered contigs after various correction stages using dnadiff from the [mummer](http://mummer.sourceforge.net/) package and [last](http://last.cbrc.jp/):
 
-![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/ddif_plots.png "dnadiff accuracies")
+![alt text](https://github.com/nanoporetech/ont-assembly-polish/blob/master/results/ddif_plots.png "dnadiff accuracies")
 
-![alt text](https://git.oxfordnanolabs.local/bsipos/ont-assembly-polish/raw/master/results/la_plots.png "lastal accuracies")
+![alt text](https://github.com/nanoporetech/ont-assembly-polish/blob/master/results/la_plots.png "lastal accuracies")
 
 ### Conclusions from the evaluation:
 - At the simulated error rate, canu alone recovers high accuracy contigs.
