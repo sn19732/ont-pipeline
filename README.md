@@ -77,7 +77,12 @@ We have measured the accuracy of recovered contigs after various correction stag
 - Both dnadiff and lastal accuracies suggest that racon and pilon polishing increases contig accuracy.
 - Lastal accuracies suggest that the effect of racon and pilon polishing is additive, though the increase in accuracy is not substantial.
 
-TODO
-----
-- Move docker image to docker hub.
-- Move repo to GitHub and fix links.
+License
+-------
+
+(c) 2016 Oxford Nanopore Technologies Ltd.
+
+This Source Code Form is subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this
+file, You can obtain one at http://mozilla.org/MPL/2.0/.
+
