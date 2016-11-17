@@ -25,16 +25,18 @@ Then issue issue `make all` to run the pipeline. Issue `make help` for a list of
 Using through docker
 --------------------
 
-The easiest way to use the pipeline is through docker. First pull the container:
+The easiest way to use the pipeline is through docker. First [install docker](https://docs.docker.com/engine/installation/), then issue the following to build the
+container:
 
 ```bash
-docker pull docker-registry.oxfordnanolabs.local:5000/ont-assembly-polish:latest
+cd docker; make build
 ```
+[//]: # docker pull docker-registry.oxfordnanolabs.local:5000/ont-assembly-polish:latest
 
 Then run the container:
 
 ```bash
-docker run -v /path/to/my_data:/data -it ont-assembly-polish:latest
+docker run -v /path/to/my_data:/data -it ont-assembly-polish
 ```
 
 You will be dropped into the directory `/home/ont-assembly-polish`, then simply edit `config.mk` and run the pipeline.
