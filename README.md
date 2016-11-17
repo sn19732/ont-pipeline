@@ -31,7 +31,6 @@ container:
 ```bash
 cd docker; make build
 ```
-[//]: # docker pull docker-registry.oxfordnanolabs.local:5000/ont-assembly-polish:latest
 
 Then run the container:
 
