@@ -32,7 +32,7 @@ endif
 # Racon has to be rebuilt on the current machine or it might fail.
 
 build_racon: $(WDIR)/racon
-$(WDIR)/racon:
+$(WDIR)/racon: $(WDT)
 	(cd $(WDIR) && git clone https://github.com/isovic/racon.git racon.build && cd racon.build && make modules && make tools && make -j) &&\
 	 mv $(WDIR)/racon.build/bin/racon $(WDIR)/ && rm -fr racon.build
 
