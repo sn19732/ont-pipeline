@@ -17,7 +17,7 @@ $(CANU_CONTIGS): $(NANOPORE_READS)
 		 -p $(CANU_PREFIX) \
 		 -d $(CANU_DIR) \
 		 genomeSize=$(CANU_GENOME_SIZE) \
-		 -nanopore-raw $(NANOPORE_READS)
+		 -nanopore-raw $(NANOPORE_READS) $(CANU_PARAMETERS)
 
 # Map nanopore reads to canu contings and use racon to perform correction based on nanopore reads only:
 
